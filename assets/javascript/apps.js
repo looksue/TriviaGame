@@ -1,19 +1,23 @@
 
+let timeRemaining = document.getElementById("spanTimeRemaining");
 let choices = document.getElementById("divChoices");
-let wrongguess = document.getElementById("divWrongGuess");
+let start = document.getElementById("divStart");
+let trivia = document.getElementById("divTrivia");
+let wrongGuess = document.getElementById("divWrongGuess");
 let score = document.getElementById("divScore");
+let question = document.getElementById("pQuestion");
+let btnStart = document.getElementById("btnStart");
 
-//var timeRemaining = document.getElementById("timeRemaining");
-var question =document.getElementById("question");
-var choiceA=document.getElementById("A");
-var choiceB=document.getElementById("B");
-var choiceC=document.getElementById("C");
-var choiceD=document.getElementById("D");
+var choiceA=document.getElementById("choiceA");
+var choiceB=document.getElementById("choiceB");
+var choiceC=document.getElementById("choiceC");
+var choiceD=document.getElementById("choiceD");
 
 //start the game by pressing start button
-$("#btnStart").on("click",function() {
-    $("#divStart").css("display","none");
-    $("#divTrivia").css("display","block");
+
+btnStart.addEventListener("click", function() {
+    divStart.style.display = "none";
+    divTrivia.style.display = "block";
     runGame();
 });
 
@@ -26,20 +30,23 @@ function runGame() {
     var bar = setInterval(function() {
         if (secondsLeft > 0) {
             secondsLeft--;
-            document.getElementById("spanTimeRemaining").innerHTML = secondsLeft;
+            timeRemaining.innerHTML = secondsLeft;
+
+            // display the first question, listen for clicks
+            for (var i = 0; i < questionArray.length - 1; i++){
+                pQuestion.innerHTML = questionArray[i]["question"];
+            }
+
+            // evaluate user choice, update display
+
+            // advance to next question
+
+            // display final result
+
         } else {
             endGame();
         }
     }, 1000);
-
-    // display the first question, listen for clicks
-
-    // evaluate user choice, update display
-
-    // advance to next question
-
-    // display final result
-
 }
 
 function endGame() {
