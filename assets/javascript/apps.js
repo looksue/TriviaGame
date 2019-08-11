@@ -1,3 +1,10 @@
+
+let timeremaining=document.getElementById("timeremaining");
+let choices=document.getElementById("choices");
+let wrongguess=document.getElementById("wrongguess");
+let score=document.getElementById("score");
+
+
 var timeRemaining = document.getElementById("start");
 var trivia =document.getElementById("trivia");
 var question =document.getElementById("question");
@@ -9,15 +16,14 @@ var choiceD=document.getElementById("D");
 var intervalId;
 
 
-$("#start").on("click", start);
-function decrement() {
-    countdownTimer--;
-}
+$("#start").on("click",function() {
+    $("#start").css("display","none");
+    $("#trivia").css("display","block");
+});
 
 $("#show-number").html("<h2>" + timeRemaining + "</h2>");
-run ();
 
-let question = [
+let questionArray = [
     {
         question: "Which President was the only President to be unamimously elected?",
         choiceA: "Ulysses S. Grant",
@@ -25,8 +31,8 @@ let question = [
         choiceC: "Andrew Jackson",
         choiceD: "George Washington",
         correct: "D",
-        imgSrc="assets\images\george.jpg",
-    }
+        imgSrc: "assets/images/george.jpg"
+    },
     {
         question: "Which President was a speed reader?",
         choiceA: "Jimmy Carter",
@@ -34,7 +40,7 @@ let question = [
         choiceC: "Theodore Roosevelt",
         choiceD: "Woodrow Wilson",
         correct: "A",
-        imgSrc: "assets\images\jimmyreading.jpg",
+        imgSrc: "assets/images/jimmyreading.jpg"
     },
     {
         question: "Which President collets Spiderman comic books?",
@@ -43,7 +49,7 @@ let question = [
         choiceC: "George W. Bush",
         choiceD: "Bill Clinton",
         correct: "B",
-        imgSrc: "assets\images\obamaspiderman.jpg",
+        imgSrc: "assets/images/obamaspiderman.jpg"
     },
     {
         question: "Who was the first President to call his residence the 'White House'?" ,
@@ -52,7 +58,7 @@ let question = [
         choiceC: "Harry Truman",
         choiceD: "Theodore Roosevelt",
         correct: "D",
-        imgSrc: "assets\images\thewhitehouse.jpg",
+        imgSrc: "assets/images/thewhitehouse.jpg"
     },
     {
         question: "Who was the first President to give a speech on television?",
@@ -61,9 +67,7 @@ let question = [
         choiceC: "Harry Truman",
         choiceD: "John F. Kennedy",
         correct: "C",
-        imgSrc: "assets\images\harrytv.jpg",
-    },
-    
-]
+        imgSrc: "assets/images/harrytv.jpg"
+    } 
+];
 
-}

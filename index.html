@@ -5,35 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="reset.css">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="assets\css\reset.css">
+    <link rel="stylesheet" type="text/css" href="assets\css\style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <title>Document</title>
+    <title>Presidential Trivia</title>
 </head>
 
 <body>
     <div id="start">
         <h1><img src="assets\images\trivia.jpeg" alt="Trivia Game"></h1>
+        <button id="timeremaining">Start</button>
     </div>
-    <div id="trivia">
+    <div id="trivia" style="display: none;">
+        <h1><img src="assets\images\trivia.jpeg" alt="Trivia Game"></h1>
+        <div id="timeremaining"></div>
+        <h2>Time Remaining</h2>
         <div id="question">
             <p>Question</p>
         </div>
-        <div id="timeremaining"></div>
-        <h2>Time Remaining</h2>
-        <button id="timeremaining">Countdown</button>
+        <div id="choices">
+            <div class="choice" id="A" onclick="checkAnswer" ('A')">A></div>
+            <div class="choice" id="B" onclick="checkAnswer" ('B')">B></div>
+            <div class="choice" id="C" onclick="checkAnswer" ('C')">C></div>
+            <div class="choice" id="D" onclick="checkAnswer" ('D')">D></div>
+        </div>
+        <div id="wrongguess">
+        </div>
+        <div id="score" style="display: none;">
+        </div>
     </div>
-    <div id="choices">
-        <div class="choice" id="A" onclick="checkAnswer"('A')" >A></div>
-        <div class="choice" id="B" onclick="checkAnswer"('B')" >B></div>
-        <div class="choice" id="C" onclick="checkAnswer"('C')" >C></div>
-        <div class="choice" id="D" onclick="checkAnswer"('D')" >D></div>
-    </div>
-    <div id="wrongguess">
-    </div>
-    <div id="score">
-    </div>
-    <script src="apps.js"></script>
+    <script src="assets\javascript\apps.js"></script>
 </body>
 
 </html>
