@@ -1,9 +1,8 @@
 
-let timeremaining=document.getElementById("timeremaining");
 let choices=document.getElementById("choices");
 let wrongguess=document.getElementById("wrongguess");
 let score=document.getElementById("score");
-
+let secondsLeft=document.getElementById("secondsLeft");
 
 var timeRemaining = document.getElementById("start");
 var trivia =document.getElementById("trivia");
