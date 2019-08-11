@@ -12,27 +12,27 @@
 </head>
 
 <body>
-    <div id="start">
+    <div id="divStart">
         <h1><img src="assets\images\trivia.jpeg" alt="Trivia Game"></h1>
-        <button id="timeremaining">Start</button>
+        <button id="btnStart">Start</button>
     </div>
-    <div id="trivia" style="display: none;">
+    <div id="divTrivia" style="display: none;">
         <h1><img src="assets\images\trivia.jpeg" alt="Trivia Game"></h1>
-        <div id="timeremaining">
-            <h2>Time Remaining: <span id="secondsLeft">120</span></h2>
+        <div>
+            <h2>Time Remaining: <span id="spanTimeRemaining">120</span></h2>
         </div>
-        <div id="question">
+        <div id="divQuestion">
             <p>Question</p>
         </div>
-        <div id="choices">
+        <div id="divChoices">
             <div class="choice" id="A" onclick="checkAnswer" ('A')">A></div>
             <div class="choice" id="B" onclick="checkAnswer" ('B')">B></div>
             <div class="choice" id="C" onclick="checkAnswer" ('C')">C></div>
             <div class="choice" id="D" onclick="checkAnswer" ('D')">D></div>
         </div>
-        <div id="wrongguess">
+        <div id="divWrongGuess">
         </div>
-        <div id="score" style="display: none;">
+        <div id="divScore" style="display: none;">
         </div>
     </div>
     <script src="assets\javascript\apps.js"></script>

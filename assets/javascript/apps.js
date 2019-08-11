@@ -1,26 +1,51 @@
 
-let choices=document.getElementById("choices");
-let wrongguess=document.getElementById("wrongguess");
-let score=document.getElementById("score");
-let secondsLeft=document.getElementById("secondsLeft");
+let choices = document.getElementById("divChoices");
+let wrongguess = document.getElementById("divWrongGuess");
+let score = document.getElementById("divScore");
 
-var timeRemaining = document.getElementById("start");
-var trivia =document.getElementById("trivia");
+//var timeRemaining = document.getElementById("timeRemaining");
 var question =document.getElementById("question");
 var choiceA=document.getElementById("A");
 var choiceB=document.getElementById("B");
 var choiceC=document.getElementById("C");
 var choiceD=document.getElementById("D");
 
-var intervalId;
-
-
-$("#start").on("click",function() {
-    $("#start").css("display","none");
-    $("#trivia").css("display","block");
+//start the game by pressing start button
+$("#btnStart").on("click",function() {
+    $("#divStart").css("display","none");
+    $("#divTrivia").css("display","block");
+    runGame();
 });
 
-$("#show-number").html("<h2>" + timeRemaining + "</h2>");
+function runGame() {
+    // put 120 seconds on the clock
+    var foo = setTimeout(endGame(), 1000 * 120);
+    var secondsLeft = 120;
+    
+    // update time remaining
+    var bar = setInterval(function() {
+        if (secondsLeft > 0) {
+            secondsLeft--;
+            document.getElementById("spanTimeRemaining").innerHTML = secondsLeft;
+        } else {
+            endGame();
+        }
+    }, 1000);
+
+    // display the first question, listen for clicks
+
+    // evaluate user choice, update display
+
+    // advance to next question
+
+    // display final result
+
+}
+
+function endGame() {
+    // display final results
+
+}
 
 let questionArray = [
     {
