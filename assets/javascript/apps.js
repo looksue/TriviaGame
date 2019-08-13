@@ -1,3 +1,4 @@
+// declare our variables
 let timeRemaining = document.getElementById("spanTimeRemaining");
 let choices = document.getElementById("divChoices");
 let start = document.getElementById("divStart");
@@ -7,18 +8,18 @@ let image = document.getElementById("divImage");
 let score = document.getElementById("divScore");
 let question = document.getElementById("pQuestion");
 let btnStart = document.getElementById("btnStart");
-
 var choiceA = document.getElementById("choiceA");
 var choiceB = document.getElementById("choiceB");
 var choiceC = document.getElementById("choiceC");
 var choiceD = document.getElementById("choiceD");
-
 var correctGuesses = 0;
 var wrongGuesses = 0;
 var unansweredQuestions = 0;
+var clicked = "";
+var currentQuestion = 0;
 
 //delay timer
-var delay = ( function() {
+var delay = (function() {
     var timer = 0;
     return function(callback, ms) {
         clearTimeout (timer);
@@ -27,11 +28,10 @@ var delay = ( function() {
 })();
 
 //start the game by pressing start button
-
 btnStart.addEventListener("click", function() {
     divStart.style.display = "none";
     divTrivia.style.display = "block";
-    runGame();
+    initializeGame();
 });
 
 function updateTimer(){
@@ -48,62 +48,88 @@ function updateTimer(){
     }, 1000);
 }
 
-function runGame() {
-
+function initializeGame() {
     // display the questions, listen for clicks
-    for (var i = 0; i < questionArray.length -1; i++){
-        pQuestion.innerHTML = questionArray[i]["question"];
-        choiceA.innerHTML = questionArray[i]["choiceA"];
-        choiceB.innerHTML = questionArray[i]["choiceB"];
-        choiceC.innerHTML = questionArray[i]["choiceC"];
-        choiceD.innerHTML = questionArray[i]["choiceD"];
-        guess.innerHTML = "";
-        image.innerHTML = "";
+    // for (var i = 0; i < questionArray.length -1; i++){
+    pQuestion.innerHTML = questionArray[currentQuestion]["question"];
+    choiceA.innerHTML = questionArray[currentQuestion]["choiceA"];
+    choiceB.innerHTML = questionArray[currentQuestion]["choiceB"];
+    choiceC.innerHTML = questionArray[currentQuestion]["choiceC"];
+    choiceD.innerHTML = questionArray[currentQuestion]["choiceD"];
+    guess.innerHTML = "";
+    image.innerHTML = "";
 
-        console.log("Correct answer: " + questionArray[i]["correct"]);
+    console.log("Correct answer: " + questionArray[currentQuestion]["correct"]);
 
-        // listen for user choices
-        choiceA.addEventListener("click", function() {
-            if (questionArray[i]["correct"] === "A") {
-                //display thats correct 
-                guess.innerHTML = "That's the correct answer!";
-                //display the picture
-                image.innerHTML = "<img src='" + questionArray[i]["imgSrc"] + "'>";
-                //add 1 to correct guesses
-                correctGuesses = correctGuesses +1;
-                //wait 3 seconds 
-                delay(function(){
-                    // do stuff
-                }, 3000 ); // end delay
-                //next questions
-            } else {
-                //display wrong guess
-                guess.innerHTML = "That's the wrong answer!  The correct answer was " + questionArray[i]["correctanswer"];
-                //diplay the picture
-                image.innerHTML = "<img src='" + questionArray[i]["imgSrc"] + "'>";
-                //add 1 to wrong guesses
-                wrongGuesses = wrongGuesses + 1;
-                //wait 3 seconds
-                delay(function(){
-                    // do stuff
-                }, 3000 ); // end delay
-                //next questions
-            }
-        });
-        choiceB.addEventListener("click", function() {
-
-        });
-        choiceC.addEventListener("click", function() {
-
-        });
-        choiceD.addEventListener("click", function() {
-
-        });
+    // listen for user choices
+    choiceA.addEventListener("click", function() {
+        evaluateClick("A");
+    });
+    choiceB.addEventListener("click", function() {
+        evaluateClick("B");
+    });
+    choiceC.addEventListener("click", function() {
+        evaluateClick("C");
+    });
+    choiceD.addEventListener("click", function() {
+        evaluateClick("D");
+    });
 
     // display final result
 
-    }
 }
+
+function evaluateClick(clicked){
+    if (questionArray[currentQuestion]["correct"] === clicked) {
+        //display thats correct 
+        guess.innerHTML = "That's the correct answer!";
+        //display the picture
+        image.innerHTML = "<img src='" + questionArray[currentQuestion]["imgSrc"] + "'>";
+        //add 1 to correct guesses
+        correctGuesses = correctGuesses + 1;
+        //wait 3 seconds 
+        delay(function(){
+            // do stuff
+        }, 3000 ); // end delay
+        //next questions
+        if (currentQuestion < questionArray.length - 1) {
+            currentQuestion = currentQuestion + 1;
+            pQuestion.innerHTML = questionArray[currentQuestion]["question"];
+            choiceA.innerHTML = questionArray[currentQuestion]["choiceA"];
+            choiceB.innerHTML = questionArray[currentQuestion]["choiceB"];
+            choiceC.innerHTML = questionArray[currentQuestion]["choiceC"];
+            choiceD.innerHTML = questionArray[currentQuestion]["choiceD"];
+            guess.innerHTML = "";
+            image.innerHTML = "";
+        } else {
+            endGame();
+        }
+    } else {
+        //display wrong guess
+        guess.innerHTML = "That's the wrong answer!  The correct answer was " + questionArray[currentQuestion]["correctanswer"];
+        //diplay the picture
+        image.innerHTML = "<img src='" + questionArray[currentQuestion]["imgSrc"] + "'>";
+        //add 1 to wrong guesses
+        wrongGuesses = wrongGuesses + 1;
+        //wait 3 seconds
+        delay(function(){
+            // do stuff
+        }, 3000 ); // end delay
+        //next questions
+        if (currentQuestion < questionArray.length - 1) {
+            currentQuestion = currentQuestion + 1;
+            pQuestion.innerHTML = questionArray[currentQuestion]["question"];
+            choiceA.innerHTML = questionArray[currentQuestion]["choiceA"];
+            choiceB.innerHTML = questionArray[currentQuestion]["choiceB"];
+            choiceC.innerHTML = questionArray[currentQuestion]["choiceC"];
+            choiceD.innerHTML = questionArray[currentQuestion]["choiceD"];
+            guess.innerHTML = "";
+            image.innerHTML = "";
+        } else {
+            endGame();
+        }
+    }
+};
 
 function endGame() {
     // display final results
@@ -132,7 +158,7 @@ let questionArray = [
         imgSrc: "assets/images/jimmyreading.jpg"
     },
     {
-        question: "Which President collets Spiderman comic books?",
+        question: "Which President collects Spiderman comic books?",
         choiceA: "Ronald Reagan",
         choiceB: "Barack Obama",
         choiceC: "George W. Bush",
@@ -159,6 +185,6 @@ let questionArray = [
         choiceD: "John F. Kennedy",
         correct: "C",
         correctanswer: "Harry Truman",
-        imgSrc: "assets/images/harrytv.jpg"
+        imgSrc: "assets/images/harry.jpg"
     } 
 ];
