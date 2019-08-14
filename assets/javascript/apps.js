@@ -17,6 +17,9 @@ var wrongGuesses = 0;
 var unansweredQuestions = 0;
 var clicked = "";
 var currentQuestion = 0;
+var seconds = 120;
+var temp = "";
+
 
 
 //start the game by pressing start button
@@ -45,6 +48,7 @@ function initializeGame() {
     choiceD.addEventListener("click", function () {
         evaluateClick("D");
     });
+    countdownTimer();
 }
 
 function updateDisplay() {
@@ -108,78 +112,77 @@ function endGame() {
 
 }
 
-//delay timer
-var delay = (function () {
-    var timer = 0;
-    return function (callback, ms) {
-        clearTimeout(timer);
-        timer = setTimeout(callback, ms);
-    };
-})();
 
-function updateTimer() {
-    // var foo = setTimeout(endGame(), 1000 * 120);
-    var secondsLeft = 10;
-    // update time remaining
-    var bar = setInterval(function () {
-        if (secondsLeft > 0) {
-            secondsLeft--;
-            timeRemaining.innerHTML = secondsLeft;
-        } else {
-            endGame();
-        }
-    }, 1000);
+function countdownTimer() {
+    seconds = document.getElementById("spanTimeRemaining").innerHTML;
+    console.log(seconds);
+    seconds = parseInt(seconds, 10);
+    console.log(seconds);
+
+    if (seconds == 1) {
+        temp = document.getElementById("spanTimeRemaining");
+        temp.innerHTML = "0";
+        return;
+    } else {
+        seconds--;
+        console.log(seconds);
+        temp = document.getElementById("spanTimeRemaining");
+        temp.innerHTML = seconds;
+        var waitasecond = setTimeout(countdownTimer, 1000);
+    }
 }
 
-let questionArray = [
-    {
-        question: "Which President was the only President to be unamimously elected?",
-        choiceA: "Ulysses S. Grant",
-        choiceB: "James Madison",
-        choiceC: "Andrew Jackson",
-        choiceD: "George Washington",
-        correct: "D",
-        correctanswer: "George Washington",
-        imgSrc: "assets/images/george.jpg"
-    },
-    {
-        question: "Which President was a speed reader?",
-        choiceA: "Jimmy Carter",
-        choiceB: "Grover Cleveland",
-        choiceC: "Theodore Roosevelt",
-        choiceD: "Woodrow Wilson",
-        correct: "A",
-        correctanswer: "Jimmy Carter",
-        imgSrc: "assets/images/jimmyreading.jpg"
-    },
-    {
-        question: "Which President collects Spiderman comic books?",
-        choiceA: "Ronald Reagan",
-        choiceB: "Barack Obama",
-        choiceC: "George W. Bush",
-        choiceD: "Bill Clinton",
-        correct: "B",
-        correctanswer: "Barack Obama",
-        imgSrc: "assets/images/obamaspiderman.jpg"
-    },
-    {
-        question: "Who was the first President to call his residence the 'White House'?",
-        choiceA: "Calvin Coolidge",
-        choiceB: "Franklin Roosevelt",
-        choiceC: "Harry Truman",
-        choiceD: "Theodore Roosevelt",
-        correct: "D",
-        correctanswer: "Theodore Roosevelt",
-        imgSrc: "assets/images/thewhitehouse.jpg"
-    },
-    {
-        question: "Who was the first President to give a speech on television?",
-        choiceA: "Franklin Roosevelt",
-        choiceB: "Dwight Eisenhower",
-        choiceC: "Harry Truman",
-        choiceD: "John F. Kennedy",
-        correct: "C",
-        correctanswer: "Harry Truman",
-        imgSrc: "assets/images/harry.jpg"
-    }
-];
+
+
+    let questionArray = [
+        {
+            question: "Which President was the only President to be unamimously elected?",
+            choiceA: "Ulysses S. Grant",
+            choiceB: "James Madison",
+            choiceC: "Andrew Jackson",
+            choiceD: "George Washington",
+            correct: "D",
+            correctanswer: "George Washington",
+            imgSrc: "assets/images/george.jpg"
+        },
+        {
+            question: "Which President was a speed reader?",
+            choiceA: "Jimmy Carter",
+            choiceB: "Grover Cleveland",
+            choiceC: "Theodore Roosevelt",
+            choiceD: "Woodrow Wilson",
+            correct: "A",
+            correctanswer: "Jimmy Carter",
+            imgSrc: "assets/images/jimmyreading.jpg"
+        },
+        {
+            question: "Which President collects Spiderman comic books?",
+            choiceA: "Ronald Reagan",
+            choiceB: "Barack Obama",
+            choiceC: "George W. Bush",
+            choiceD: "Bill Clinton",
+            correct: "B",
+            correctanswer: "Barack Obama",
+            imgSrc: "assets/images/obamaspiderman.jpg"
+        },
+        {
+            question: "Who was the first President to call his residence the 'White House'?",
+            choiceA: "Calvin Coolidge",
+            choiceB: "Franklin Roosevelt",
+            choiceC: "Harry Truman",
+            choiceD: "Theodore Roosevelt",
+            correct: "D",
+            correctanswer: "Theodore Roosevelt",
+            imgSrc: "assets/images/thewhitehouse.jpg"
+        },
+        {
+            question: "Who was the first President to give a speech on television?",
+            choiceA: "Franklin Roosevelt",
+            choiceB: "Dwight Eisenhower",
+            choiceC: "Harry Truman",
+            choiceD: "John F. Kennedy",
+            correct: "C",
+            correctanswer: "Harry Truman",
+            imgSrc: "assets/images/harry.jpg"
+        }
+    ];
