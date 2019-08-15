@@ -21,12 +21,26 @@ var seconds = 120;
 var temp = "";
 var waitasecond;
 
-
+// listen for user choices
+choiceA.addEventListener("click", function () {
+    evaluateClick("A");
+});
+choiceB.addEventListener("click", function () {
+    evaluateClick("B");
+});
+choiceC.addEventListener("click", function () {
+    evaluateClick("C");
+});
+choiceD.addEventListener("click", function () {
+    evaluateClick("D");
+});
 
 //start the game by pressing start button
 btnStart.addEventListener("click", function () {
     divStart.style.display = "none";
     divTrivia.style.display = "block";
+
+    //initialize the game
     initializeGame();
 });
 
@@ -37,24 +51,9 @@ function initializeGame() {
     correctGuesses = 0;
     wrongGuesses = 0;
     unansweredQuestions = 0;
-    
-    // display the questions, listen for clicks
-    updateDisplay();
-    console.log("Correct answer: " + questionArray[currentQuestion]["correct"]);
 
-    // listen for user choices
-    choiceA.addEventListener("click", function () {
-        evaluateClick("A");
-    });
-    choiceB.addEventListener("click", function () {
-        evaluateClick("B");
-    });
-    choiceC.addEventListener("click", function () {
-        evaluateClick("C");
-    });
-    choiceD.addEventListener("click", function () {
-        evaluateClick("D");
-    });
+    // display the questions, start the timer
+    updateDisplay();
     countdownTimer();
 }
 
@@ -64,18 +63,12 @@ function updateDisplay() {
     choiceB.innerHTML = questionArray[currentQuestion]["choiceB"];
     choiceC.innerHTML = questionArray[currentQuestion]["choiceC"];
     choiceD.innerHTML = questionArray[currentQuestion]["choiceD"];
-   // guess.innerHTML = "";
-   // image.innerHTML = "";
-
+    console.log(currentQuestion + ", " + correctGuesses + ", " + wrongGuesses + ", " + unansweredQuestions);
 }
 
 function evaluateClick(clicked) {
 
-    console.log(clicked);
-    console.log(questionArray[currentQuestion]["correct"]);
-
     if (questionArray[currentQuestion]["correct"] === clicked) {
-        console.log("By golly they match!");
         //display thats correct 
         guess.innerHTML = "That's the correct answer!";
         //display the picture
@@ -114,27 +107,28 @@ function endGame() {
     btnStart.innerHTML = "Restart";
     unansweredQuestions = (questionArray.length - correctGuesses - wrongGuesses);
     divScore.innerHTML = "<p>Game over! </p><p>Correct: " + correctGuesses + "</p><p>Wrong: " + wrongGuesses + "</p><p>Unanswered: " + unansweredQuestions + "</p>";
+    currentQuestion = 0;
+    correctGuesses = 0;
+    wrongGuesses = 0;
+    unansweredQuestions = 0;
 
     // reset the countdown timer
-    clearTimeout (waitasecond);
+    clearTimeout(waitasecond);
     document.getElementById("spanTimeRemaining").innerHTML = 60;
-
 }
 
 
 function countdownTimer() {
     seconds = document.getElementById("spanTimeRemaining").innerHTML;
-    console.log(seconds);
     seconds = parseInt(seconds, 10);
-    console.log(seconds);
 
     if (seconds == 1) {
         temp = document.getElementById("spanTimeRemaining");
         temp.innerHTML = "0";
+        endGame();
         return;
     } else {
         seconds--;
-        console.log(seconds);
         temp = document.getElementById("spanTimeRemaining");
         temp.innerHTML = seconds;
         waitasecond = setTimeout(countdownTimer, 1000);
@@ -143,55 +137,55 @@ function countdownTimer() {
 
 
 
-    let questionArray = [
-        {
-            question: "Which President was the only President to be unamimously elected?",
-            choiceA: "Ulysses S. Grant",
-            choiceB: "James Madison",
-            choiceC: "Andrew Jackson",
-            choiceD: "George Washington",
-            correct: "D",
-            correctanswer: "George Washington",
-            imgSrc: "assets/images/george.jpg"
-        },
-        {
-            question: "Which President was a speed reader?",
-            choiceA: "Jimmy Carter",
-            choiceB: "Grover Cleveland",
-            choiceC: "Theodore Roosevelt",
-            choiceD: "Woodrow Wilson",
-            correct: "A",
-            correctanswer: "Jimmy Carter",
-            imgSrc: "assets/images/jimmyreading.jpg"
-        },
-        {
-            question: "Which President collects Spiderman comic books?",
-            choiceA: "Ronald Reagan",
-            choiceB: "Barack Obama",
-            choiceC: "George W. Bush",
-            choiceD: "Bill Clinton",
-            correct: "B",
-            correctanswer: "Barack Obama",
-            imgSrc: "assets/images/obamaspiderman.jpg"
-        },
-        {
-            question: "Who was the first President to call his residence the 'White House'?",
-            choiceA: "Calvin Coolidge",
-            choiceB: "Franklin Roosevelt",
-            choiceC: "Harry Truman",
-            choiceD: "Theodore Roosevelt",
-            correct: "D",
-            correctanswer: "Theodore Roosevelt",
-            imgSrc: "assets/images/thewhitehouse.jpg"
-        },
-        {
-            question: "Who was the first President to give a speech on television?",
-            choiceA: "Franklin Roosevelt",
-            choiceB: "Dwight Eisenhower",
-            choiceC: "Harry Truman",
-            choiceD: "John F. Kennedy",
-            correct: "C",
-            correctanswer: "Harry Truman",
-            imgSrc: "assets/images/harry.jpg"
-        }
-    ];
+let questionArray = [
+    {
+        question: "Which President was the only President to be unamimously elected?",
+        choiceA: "Ulysses S. Grant",
+        choiceB: "James Madison",
+        choiceC: "Andrew Jackson",
+        choiceD: "George Washington",
+        correct: "D",
+        correctanswer: "George Washington",
+        imgSrc: "assets/images/george.jpg"
+    },
+    {
+        question: "Which President was a speed reader?",
+        choiceA: "Jimmy Carter",
+        choiceB: "Grover Cleveland",
+        choiceC: "Theodore Roosevelt",
+        choiceD: "Woodrow Wilson",
+        correct: "A",
+        correctanswer: "Jimmy Carter",
+        imgSrc: "assets/images/jimmyreading.jpg"
+    },
+    {
+        question: "Which President collects Spiderman comic books?",
+        choiceA: "Ronald Reagan",
+        choiceB: "Barack Obama",
+        choiceC: "George W. Bush",
+        choiceD: "Bill Clinton",
+        correct: "B",
+        correctanswer: "Barack Obama",
+        imgSrc: "assets/images/obamaspiderman.jpg"
+    },
+    {
+        question: "Who was the first President to call his residence the 'White House'?",
+        choiceA: "Calvin Coolidge",
+        choiceB: "Franklin Roosevelt",
+        choiceC: "Harry Truman",
+        choiceD: "Theodore Roosevelt",
+        correct: "D",
+        correctanswer: "Theodore Roosevelt",
+        imgSrc: "assets/images/thewhitehouse.jpg"
+    },
+    {
+        question: "Who was the first President to give a speech on television?",
+        choiceA: "Franklin Roosevelt",
+        choiceB: "Dwight Eisenhower",
+        choiceC: "Harry Truman",
+        choiceD: "John F. Kennedy",
+        correct: "C",
+        correctanswer: "Harry Truman",
+        imgSrc: "assets/images/harry.jpg"
+    }
+];
