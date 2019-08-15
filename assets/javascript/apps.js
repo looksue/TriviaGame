@@ -101,6 +101,16 @@ function evaluateClick(clicked) {
 
 function endGame() {
     // display final results
+    divStart.style.display = "block";
+    divTrivia.style.display = "none";
+    divScore.style.display = "block";
+    btnStart.innerHTML = "Restart";
+    var unansweredQuestions = (questionArray.length - correctGuesses - wrongGuesses);
+
+    divScore.innerHTML = "<p>Game over! </p><p>Correct: " + correctGuesses + "</p><p>Wrong: " + wrongGuesses + "</p><p>Unanswered: " + unansweredQuestions + "</p>";
+
+
+
 
 }
 
