@@ -57,8 +57,8 @@ function updateDisplay() {
     choiceB.innerHTML = questionArray[currentQuestion]["choiceB"];
     choiceC.innerHTML = questionArray[currentQuestion]["choiceC"];
     choiceD.innerHTML = questionArray[currentQuestion]["choiceD"];
-    guess.innerHTML = "";
-    image.innerHTML = "";
+   // guess.innerHTML = "";
+   // image.innerHTML = "";
 
 }
 
@@ -75,10 +75,6 @@ function evaluateClick(clicked) {
         image.innerHTML = "<img src='" + questionArray[currentQuestion]["imgSrc"] + "'>";
         //add 1 to correct guesses
         correctGuesses = correctGuesses + 1;
-        //wait 3 seconds 
-        delay(function () {
-            // do stuff
-        }, 3000); // end delay
         //next questions
         if (currentQuestion < questionArray.length - 1) {
             currentQuestion = currentQuestion + 1;
@@ -93,10 +89,6 @@ function evaluateClick(clicked) {
         image.innerHTML = "<img src='" + questionArray[currentQuestion]["imgSrc"] + "'>";
         //add 1 to wrong guesses
         wrongGuesses = wrongGuesses + 1;
-        //wait 3 seconds
-        delay(function () {
-            // do stuff
-        }, 3000); // end delay
         //next questions
         if (currentQuestion < questionArray.length - 1) {
             currentQuestion = currentQuestion + 1;
