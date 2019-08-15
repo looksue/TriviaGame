@@ -19,6 +19,7 @@ var clicked = "";
 var currentQuestion = 0;
 var seconds = 120;
 var temp = "";
+var waitasecond;
 
 
 
@@ -31,6 +32,12 @@ btnStart.addEventListener("click", function () {
 
 
 function initializeGame() {
+    // reset to zero for restart
+    currentQuestion = 0;
+    correctGuesses = 0;
+    wrongGuesses = 0;
+    unansweredQuestions = 0;
+    
     // display the questions, listen for clicks
     updateDisplay();
     console.log("Correct answer: " + questionArray[currentQuestion]["correct"]);
@@ -105,12 +112,12 @@ function endGame() {
     divTrivia.style.display = "none";
     divScore.style.display = "block";
     btnStart.innerHTML = "Restart";
-    var unansweredQuestions = (questionArray.length - correctGuesses - wrongGuesses);
-
+    unansweredQuestions = (questionArray.length - correctGuesses - wrongGuesses);
     divScore.innerHTML = "<p>Game over! </p><p>Correct: " + correctGuesses + "</p><p>Wrong: " + wrongGuesses + "</p><p>Unanswered: " + unansweredQuestions + "</p>";
 
-
-
+    // reset the countdown timer
+    clearTimeout (waitasecond);
+    document.getElementById("spanTimeRemaining").innerHTML = 60;
 
 }
 
@@ -130,7 +137,7 @@ function countdownTimer() {
         console.log(seconds);
         temp = document.getElementById("spanTimeRemaining");
         temp.innerHTML = seconds;
-        var waitasecond = setTimeout(countdownTimer, 1000);
+        waitasecond = setTimeout(countdownTimer, 1000);
     }
 }
 
