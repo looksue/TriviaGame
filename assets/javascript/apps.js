@@ -1,12 +1,4 @@
 // declare our variables
-let timeRemaining = document.getElementById("spanTimeRemaining");
-let choices = document.getElementById("divChoices");
-let start = document.getElementById("divStart");
-let trivia = document.getElementById("divTrivia");
-let guess = document.getElementById("divGuess");
-let image = document.getElementById("divImage");
-let score = document.getElementById("divScore");
-let question = document.getElementById("pQuestion");
 let btnStart = document.getElementById("btnStart");
 var choiceA = document.getElementById("choiceA");
 var choiceB = document.getElementById("choiceB");
@@ -18,7 +10,6 @@ var unansweredQuestions = 0;
 var clicked = "";
 var currentQuestion = 0;
 var seconds = 120;
-var temp = "";
 var waitasecond;
 
 // listen for user choices
