@@ -37,8 +37,8 @@ choiceD.addEventListener("click", function () {
 
 //start the game by pressing start button
 btnStart.addEventListener("click", function () {
-    divStart.style.display = "none";
-    divTrivia.style.display = "block";
+    $("#divStart").css("display", "none");
+    $("#divTrivia").css("display","block");
 
     //initialize the game
     initializeGame();
@@ -51,7 +51,9 @@ function initializeGame() {
     correctGuesses = 0;
     wrongGuesses = 0;
     unansweredQuestions = 0;
-
+    guess.innerHTML = "";
+    image.innerHTML = "";
+    
     // display the questions, start the timer
     updateDisplay();
     countdownTimer();
@@ -101,9 +103,9 @@ function evaluateClick(clicked) {
 
 function endGame() {
     // display final results
-    divStart.style.display = "block";
-    divTrivia.style.display = "none";
-    divScore.style.display = "block";
+    $("#divStart").css("display", "block");
+    $("#divTrivia").css("display","none");
+    $("#divScore").css("display", "block");
     btnStart.innerHTML = "Restart";
     unansweredQuestions = (questionArray.length - correctGuesses - wrongGuesses);
     divScore.innerHTML = "<p>Game over! </p><p>Correct: " + correctGuesses + "</p><p>Wrong: " + wrongGuesses + "</p><p>Unanswered: " + unansweredQuestions + "</p>";
