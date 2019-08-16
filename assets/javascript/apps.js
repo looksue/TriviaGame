@@ -44,15 +44,14 @@ btnStart.addEventListener("click", function () {
     initializeGame();
 });
 
-
 function initializeGame() {
     // reset to zero for restart
     currentQuestion = 0;
     correctGuesses = 0;
     wrongGuesses = 0;
     unansweredQuestions = 0;
-    guess.innerHTML = "";
-    image.innerHTML = "";
+    $("#divGuess").html ("");
+    $("#divImage").html ("");
     
     // display the questions, start the timer
     updateDisplay();
@@ -60,11 +59,11 @@ function initializeGame() {
 }
 
 function updateDisplay() {
-    pQuestion.innerHTML = questionArray[currentQuestion]["question"];
-    choiceA.innerHTML = questionArray[currentQuestion]["choiceA"];
-    choiceB.innerHTML = questionArray[currentQuestion]["choiceB"];
-    choiceC.innerHTML = questionArray[currentQuestion]["choiceC"];
-    choiceD.innerHTML = questionArray[currentQuestion]["choiceD"];
+    $("#pQuestion").html (questionArray[currentQuestion]["question"]);
+    $("#choiceA").html (questionArray[currentQuestion]["choiceA"]);
+    $("#choiceB").html (questionArray[currentQuestion]["choiceB"]);
+    $("#choiceC").html (questionArray[currentQuestion]["choiceC"]);
+    $("#choiceD").html (questionArray[currentQuestion]["choiceD"]);
     console.log(currentQuestion + ", " + correctGuesses + ", " + wrongGuesses + ", " + unansweredQuestions);
 }
 
@@ -72,9 +71,10 @@ function evaluateClick(clicked) {
 
     if (questionArray[currentQuestion]["correct"] === clicked) {
         //display thats correct 
-        guess.innerHTML = "That's the correct answer!";
+     //   $("#divGuess").html = "That's the correct answer!";
+        $("#divGuess").html("That's the correct answer!");
         //display the picture
-        image.innerHTML = "<img src='" + questionArray[currentQuestion]["imgSrc"] + "'>";
+        $("#divImage").html ("<img src='" + questionArray[currentQuestion]["imgSrc"] + "'>");
         //add 1 to correct guesses
         correctGuesses = correctGuesses + 1;
         //next questions
@@ -86,9 +86,9 @@ function evaluateClick(clicked) {
         }
     } else {
         //display wrong guess
-        guess.innerHTML = "That's the wrong answer!  The correct answer was " + questionArray[currentQuestion]["correctanswer"];
+        $("#divGuess").html ("That's the wrong answer!  The correct answer was " + questionArray[currentQuestion]["correctanswer"]);
         //diplay the picture
-        image.innerHTML = "<img src='" + questionArray[currentQuestion]["imgSrc"] + "'>";
+        $("#divImage").html ("<img src='" + questionArray[currentQuestion]["imgSrc"] + "'>");
         //add 1 to wrong guesses
         wrongGuesses = wrongGuesses + 1;
         //next questions
@@ -106,9 +106,9 @@ function endGame() {
     $("#divStart").css("display", "block");
     $("#divTrivia").css("display","none");
     $("#divScore").css("display", "block");
-    btnStart.innerHTML = "Restart";
+    $("#btnStart").html ("Restart");
     unansweredQuestions = (questionArray.length - correctGuesses - wrongGuesses);
-    divScore.innerHTML = "<p>Game over! </p><p>Correct: " + correctGuesses + "</p><p>Wrong: " + wrongGuesses + "</p><p>Unanswered: " + unansweredQuestions + "</p>";
+    $("#divScore").html ("<p>Game over! </p><p>Correct: " + correctGuesses + "</p><p>Wrong: " + wrongGuesses + "</p><p>Unanswered: " + unansweredQuestions + "</p>");
     currentQuestion = 0;
     correctGuesses = 0;
     wrongGuesses = 0;
@@ -116,23 +116,21 @@ function endGame() {
 
     // reset the countdown timer
     clearTimeout(waitasecond);
-    document.getElementById("spanTimeRemaining").innerHTML = 60;
+    $("#spanTimeRemaining").html ("60");
 }
 
 
 function countdownTimer() {
-    seconds = document.getElementById("spanTimeRemaining").innerHTML;
+    seconds = $("#spanTimeRemaining").html ();
     seconds = parseInt(seconds, 10);
 
     if (seconds == 1) {
-        temp = document.getElementById("spanTimeRemaining");
-        temp.innerHTML = "0";
+        $("#spanTimeRemaining").html ("0");
         endGame();
         return;
     } else {
         seconds--;
-        temp = document.getElementById("spanTimeRemaining");
-        temp.innerHTML = seconds;
+        $("#spanTimeRemaining").html (seconds);
         waitasecond = setTimeout(countdownTimer, 1000);
     }
 }
