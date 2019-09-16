@@ -1,0 +1,65 @@
+@media screen and (max-width: 980px) {
+    body, header, footer {
+        width: 95%;
+    }
+    section {
+        width: 80%;
+        margin: 20px 100px;
+    }
+    h1 {
+        margin-left: 100px;
+    }
+    h2 {
+        width: 75%;
+    }
+    input {
+        width: 80%;
+    }
+    textarea {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body, header, footer {
+        width: 95%;
+    }
+    section {
+        width: 80%;
+        margin: 20px 50px;
+    }
+    h1 {
+        margin-left: 50px;
+    }
+    h2 {
+        width: 75%;
+    }
+    input {
+        width: 80%;
+    }
+    textarea {
+        width: 80%;
+    }
+}
+    
+@media screen and (max-width: 640px) {
+    body, header, footer {
+        width: 95%;
+    }
+    section {
+        width: 80%;
+        margin: 20px 0px;
+    }
+    h1 {
+        margin-left: 0px;
+    }
+    h2 {
+        width: 75%;
+    }
+    input {
+        width: 80%;
+    }
+    textarea {
+        width: 80%;
+    }
+}

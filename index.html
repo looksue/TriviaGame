@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="assets\css\style.css">
-    <!--link rel="stylesheet" type="text/css" href="assets\css\reset.css"-->
+    <link rel="stylesheet" type="text/css" href="assets\css\media.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>Presidential Trivia</title>
 </head>
 
 <body>
     <div id="divStart">
-        <h1><img src="assets\images\trivia.jpeg" alt="Trivia Game" style="height:200px; width:500px"></h1>
+        <h1><img src="assets\images\trivia.png" alt="Trivia Game" style="height:200px; width:500px"></h1>
         <button id="btnStart">Start</button>
         <div id="divScore" style="display: none;">
             <p>Game over! </p>
@@ -24,7 +24,6 @@
 
     </div>
     <div id="divTrivia" style="display: none;">
-        <h1><img src="assets\images\trivia.jpeg" alt="Trivia Game" style="height:200px; width:500px"></h1>
         <div>
             <h2>Time Remaining: <span id="spanTimeRemaining">61</span></h2>
         </div>
@@ -34,17 +33,23 @@
             <p></p>
         </div>
         <div id="divChoices">
-            <div class="choice" id="choiceA" value="A"></div>
-            <div class="choice" id="choiceB" value="B"></div>
-            <div class="choice" id="choiceC" value="C"></div>
-            <div class="choice" id="choiceD" value="D"></div>
+            <p>
+                <div class="choice" id="choiceA" value="A"></div>
+            </p>
+            <p>
+                <div class="choice" id="choiceB" value="B"></div>
+            </p>
+            <p>
+                <div class="choice" id="choiceC" value="C"></div>
+            </p>
+            <p>
+                <div class="choice" id="choiceD" value="D"></div>
+            </p>
         </div>
         <p></p>
-        <div id="divGuess">
-        </div>
-        <div id="divImage">
-
-        </div>
+        <div id="divGuess"></div>
+        <p></p>
+        <div id="divImage"></div>
     </div>
     <script src="assets\javascript\apps.js"></script>
 </body>
