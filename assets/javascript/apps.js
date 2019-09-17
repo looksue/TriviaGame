@@ -50,11 +50,18 @@ function initializeGame() {
 }
 
 function updateDisplay() {
-    $("#pQuestion").html (questionArray[currentQuestion]["question"]);
-    $("#choiceA").html (questionArray[currentQuestion]["choiceA"]);
-    $("#choiceB").html (questionArray[currentQuestion]["choiceB"]);
-    $("#choiceC").html (questionArray[currentQuestion]["choiceC"]);
-    $("#choiceD").html (questionArray[currentQuestion]["choiceD"]);
+    //fade out the question and choices to make it obvious a new question is being displayed
+    $("#divFader").fadeTo(1000, 0.0, function() {
+        // Animation complete.
+        $("#pQuestion").html (questionArray[currentQuestion]["question"]);
+        $("#choiceA").html (questionArray[currentQuestion]["choiceA"]);
+        $("#choiceB").html (questionArray[currentQuestion]["choiceB"]);
+        $("#choiceC").html (questionArray[currentQuestion]["choiceC"]);
+        $("#choiceD").html (questionArray[currentQuestion]["choiceD"]);    
+      });
+    $("#divFader").fadeTo(1000, 1.0, function() {
+        // Animation complete.
+      });
     console.log(currentQuestion + ", " + correctGuesses + ", " + wrongGuesses + ", " + unansweredQuestions);
 }
 

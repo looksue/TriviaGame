@@ -20,3 +20,7 @@ body {
 .choice {
     cursor: pointer;
 }
+
+.divQuestion, .divChoices {
+    transition: opacity .5s ease-in-out;
+}
