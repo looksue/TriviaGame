@@ -25,7 +25,7 @@ function updateDisplay() {
     console.log(currentQuestion + ", " + correctGuesses + ", " + wrongGuesses + ", " + unansweredQuestions);
 }
 
-Screenshot: ![Trivia Game](assets\images\background.jpg)
+Screenshot: ![Trivia Game](https://github.com/looksue/TriviaGame/blob/master/assets/images/projectimage.png)
 
 
  https://looksue.github.io/TriviaGame/
